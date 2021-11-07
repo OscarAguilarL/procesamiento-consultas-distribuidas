@@ -25,7 +25,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $countryName = $result[0]['Name'];
 
         foreach ($result as $city) {
-            array_push($citys, utf8_decode($city['District']));
+            if ($countryCode == 'SG') {
+                array_push($citys, $city['District']);
+            } else {
+                array_push($citys, utf8_decode($city['District']));
+            }
         }
 
         $apiResponse = array(
