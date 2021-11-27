@@ -11,17 +11,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         $conn = connection();
         $ip = getIpAddress();
-        $countryCode = getCountryCode('187.191.15.151'); // dev
-        // $countryCode = getCountryCode($ip); // production
-        $citys = array();
-        $countryName = '';
+        // $countryCode = getCountryCode('187.191.15.151'); // dev
+        $countryCode = getCountryCode($ip); // production
 
         $sql = "SELECT * FROM [production].[products]";
         $query = $conn->prepare($sql);
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
-
-
 
         $apiResponse = array(
             'ok' => true,
